@@ -1,64 +1,112 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
-public class Fornecedores {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
-	private Long CODIGO_FORNECEDOR;
-	private String RAZAO_SOCIAL;
-	private String CNPJ;
-	private String NOME_CONTATO;
-	private String TELEFONE;
-	private String EMAIL;
-	private Long CODIGO_ENDERECO;
+@Entity(name = "Fornecedores")
+@Table(name = "FORNECEDORES", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "EMAIL", name = "UK_FORNECEDORES_EMAIL")
+})
+public class Fornecedores {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SQ_FORNECEDORES", sequenceName = "SQ_FORNECEDORES", allocationSize = 1)
+	@Column(name = "CODIGO_FORNECEDOR")
+	private Long codigo_fornecedor;
 	
-	//CONSTRUTOR
+	@Column(name = "RAZAO_SOCIAL", nullable = false)
+	private String razao_social;
+	
+	@Column(name = "CNPJ", nullable = false)
+	private String cnpj;
+	
+	@Column(name = "NOME_CONTATO")
+	private String nome_contato;
+	
+	@Column(name = "TELEFONE")
+	private String telefone;
+	
+	@Column(name = "EMAIL", nullable = false)
+	private String email;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(
+				name = "codigo_endereco",
+				referencedColumnName = "codigo_endereco",
+				foreignKey = @ForeignKey(name = "FK_FORNECEDORES_ENDERECO")
+			)
+	private Enderecos endereco;
+	
+	// CONSTRUTOR
 	public Fornecedores() {
 		super();
 	}
-	
-	//GETTERS AND SETTERS
-	public Long getCODIGO_FORNECEDOR() {
-		return CODIGO_FORNECEDOR;
+
+	// GETTERS AND SETTERS
+	public Long getCodigo_fornecedor() {
+		return codigo_fornecedor;
 	}
-	
-	public void setCODIGO_FORNECEDOR(Long cODIGO_FORNECEDOR) {
-		CODIGO_FORNECEDOR = cODIGO_FORNECEDOR;
+
+	public void setCodigo_fornecedor(Long codigo_fornecedor) {
+		this.codigo_fornecedor = codigo_fornecedor;
 	}
-	public String getRAZAO_SOCIAL() {
-		return RAZAO_SOCIAL;
+
+	public String getRazao_social() {
+		return razao_social;
 	}
-	public void setRAZAO_SOCIAL(String rAZAO_SOCIAL) {
-		RAZAO_SOCIAL = rAZAO_SOCIAL;
+
+	public void setRazao_social(String razao_social) {
+		this.razao_social = razao_social;
 	}
-	public String getCNPJ() {
-		return CNPJ;
+
+	public String getCnpj() {
+		return cnpj;
 	}
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
-	public String getNOME_CONTATO() {
-		return NOME_CONTATO;
+
+	public String getNome_contato() {
+		return nome_contato;
 	}
-	public void setNOME_CONTATO(String nOME_CONTATO) {
-		NOME_CONTATO = nOME_CONTATO;
+
+	public void setNome_contato(String nome_contato) {
+		this.nome_contato = nome_contato;
 	}
-	public String getTELEFONE() {
-		return TELEFONE;
+
+	public String getTelefone() {
+		return telefone;
 	}
-	public void setTELEFONE(String tELEFONE) {
-		TELEFONE = tELEFONE;
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
-	public String getEMAIL() {
-		return EMAIL;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public Long getCODIGO_ENDERECO() {
-		return CODIGO_ENDERECO;
+
+	public Enderecos getEndereco() {
+		return endereco;
 	}
-	public void setCODIGO_ENDERECO(Long cODIGO_ENDERECO) {
-		CODIGO_ENDERECO = cODIGO_ENDERECO;
-	}
-	
-		
+
+	public void setEndereco(Enderecos endereco) {
+		this.endereco = endereco;
+	}		
 }
