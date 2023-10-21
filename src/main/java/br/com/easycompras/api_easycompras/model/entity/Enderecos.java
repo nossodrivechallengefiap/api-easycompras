@@ -1,85 +1,110 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
-public class Enderecos {
-	
-	private Long CODIGO_ENDERECO;
-	private String LOGRADOURO;
-	private String NUMERO;
-	private String COMPLEMENTO;
-	private String BAIRRO;
-	private String CIDADE;
-	private String ESTADO;
-	private String CEP;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
-	//CONSTRUTOR
+@Entity(name = "Enderecos")
+@Table(name = "ENDERECOS")
+public class Enderecos {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SQ_ENDERECOS", sequenceName = "SQ_ENDERECOS", allocationSize = 1)
+	@Column(name = "CODIGO_ENDERECO")
+	private Long codigo_endereco;
+	
+	@Column(name = "LOGRADOURO", nullable = false)
+	private String logradouro;
+	
+	@Column(name = "NUMERO", nullable = false)
+	private String numero;
+	
+	@Column(name = "COMPLEMENTO")
+	private String complemento;
+	
+	@Column(name = "BAIRRO", nullable = false)
+	private String bairro;
+	
+	@Column(name = "CIDADE", nullable = false)
+	private String cidade;
+	
+	@Column(name = "ESTADO", nullable = false)
+	private String estado;
+	
+	@Column(name = "CEP", nullable = false)
+	private String cep;
+
+	// CONSTRUTOR
 	public Enderecos() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	//GETTERS AND SETTERS
-	public Long getCODIGO_ENDERECO() {
-		return CODIGO_ENDERECO;
+	// GETTERS AND SETTERS
+	public Long getCodigo_endereco() {
+		return codigo_endereco;
 	}
 
-	public void setCODIGO_ENDERECO(Long cODIGO_ENDERECO) {
-		CODIGO_ENDERECO = cODIGO_ENDERECO;
+	public void setCodigo_endereco(Long codigo_endereco) {
+		this.codigo_endereco = codigo_endereco;
 	}
 
-	public String getLOGRADOURO() {
-		return LOGRADOURO;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setLOGRADOURO(String lOGRADOURO) {
-		LOGRADOURO = lOGRADOURO;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
-	public String getNUMERO() {
-		return NUMERO;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setNUMERO(String nUMERO) {
-		NUMERO = nUMERO;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
-	public String getCOMPLEMENTO() {
-		return COMPLEMENTO;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setCOMPLEMENTO(String cOMPLEMENTO) {
-		COMPLEMENTO = cOMPLEMENTO;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
-	public String getBAIRRO() {
-		return BAIRRO;
+	public String getBairro() {
+		return bairro;
 	}
 
-	public void setBAIRRO(String bAIRRO) {
-		BAIRRO = bAIRRO;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
-	public String getCIDADE() {
-		return CIDADE;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public void setCIDADE(String cIDADE) {
-		CIDADE = cIDADE;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
-	public String getESTADO() {
-		return ESTADO;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setESTADO(String eSTADO) {
-		ESTADO = eSTADO;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public String getCEP() {
-		return CEP;
+	public String getCep() {
+		return cep;
 	}
 
-	public void setCEP(String cEP) {
-		CEP = cEP;
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
-	
 }

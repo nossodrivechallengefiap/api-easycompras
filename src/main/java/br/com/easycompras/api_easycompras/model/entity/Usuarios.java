@@ -1,49 +1,90 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
-public class Usuarios {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
-	private Long CODIGO_USUARIO;
-	private String NOME;
-	private String SENHA;
-	private String EMAIL;
-	private Long CODIGO_ENDERECO;
+@Entity(name = "Usuarios")
+@Table(name = "USUARIOS", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "EMAIL", name = "UK_USUARIOS_EMAIL")
+})
+public class Usuarios {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SQ_USUARIOS", sequenceName = "SQ_USUARIOS", allocationSize = 1)
+	@Column(name = "CODIGO_USUARIO")
+	private Long codigo_usuario;
+	
+	@Column(name = "NOME", nullable = false)
+	private String nome;
+	
+	@Column(name = "SENHA", nullable = false)
+	private String senha;
+	
+	@Column(name = "EMAIL", nullable = false)
+	private String email;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(
+				name = "codigo_endereco",
+				referencedColumnName = "codigo_endereco",
+				foreignKey = @ForeignKey(name = "FK_USUARIOS_ENDERECO")
+			)
+	private Enderecos endereco;
 	
 	//CONSTRUTORES
 	public Usuarios() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	//GETTERS AND SETTERS
-	public Long getCODIGO_USUARIO() {
-		return CODIGO_USUARIO;
+	public Long getCodigo_usuario() {
+		return codigo_usuario;
 	}
-	public void setCODIGO_USUARIO(Long cODIGO_USUARIO) {
-		CODIGO_USUARIO = cODIGO_USUARIO;
+
+	public void setCodigo_usuario(Long codigo_usuario) {
+		this.codigo_usuario = codigo_usuario;
 	}
-	public String getNOME() {
-		return NOME;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setNOME(String nOME) {
-		NOME = nOME;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getSENHA() {
-		return SENHA;
+
+	public String getSenha() {
+		return senha;
 	}
-	public void setSENHA(String sENHA) {
-		SENHA = sENHA;
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	public String getEMAIL() {
-		return EMAIL;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setEMAIL(String eMAIL) {
-		EMAIL = eMAIL;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public Long getCODIGO_ENDERECO() {
-		return CODIGO_ENDERECO;
+
+	public Enderecos getEndereco() {
+		return endereco;
 	}
-	public void setCODIGO_ENDERECO(Long cODIGO_ENDERECO) {
-		CODIGO_ENDERECO = cODIGO_ENDERECO;
+
+	public void setEndereco(Enderecos endereco) {
+		this.endereco = endereco;
 	}
-	
 }

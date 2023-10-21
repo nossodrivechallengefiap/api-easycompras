@@ -1,27 +1,44 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
+@Entity(name = "Produtos")
+@Table(name = "PRODUTOS")
 public class Produtos {
-	
-	private String SKU;
-	private String NOME_PRODUTO;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SQ_PRODUTOS", sequenceName = "SQ_PRODUTOS", allocationSize = 1)
+	@Column(name = "SKU")
+	private String sku;
+
+	@Column(name = "NOME_PRODUTO", nullable = false)
+	private String nome_produto;
 	
 	//CONSTRUTORES
 	public Produtos() {
 		super();
 	}
-	
+
 	//GETTERS AND SETTERS
-	public String getSKU() {
-		return SKU;
+	public String getSku() {
+		return sku;
 	}
-	public void setSKU(String sKU) {
-		SKU = sKU;
+
+	public void setSku(String sku) {
+		this.sku = sku;
 	}
-	public String getNOME_PRODUTO() {
-		return NOME_PRODUTO;
+
+	public String getNome_produto() {
+		return nome_produto;
 	}
-	public void setNOME_PRODUTO(String nOME_PRODUTO) {
-		NOME_PRODUTO = nOME_PRODUTO;
+
+	public void setNome_produto(String nome_produto) {
+		this.nome_produto = nome_produto;
 	}
-	
 }
