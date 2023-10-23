@@ -12,4 +12,8 @@
 
 # DIAGRAMA DE CLASSES
 
-## DIAGRAMA DE UML 
+### DIAGRAMA DE UML 
+![ LOGO DO PROJETO ](Diagrama_Entidade_UML.png)
+
+### MODELO MER
+![ LOGO DO PROJETO ](model_logico.png)
