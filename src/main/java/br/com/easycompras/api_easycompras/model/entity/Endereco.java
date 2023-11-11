@@ -1,7 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
 import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoEndereco;
-import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoEnderecoUsuario;
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoEnderecoSemPK;
 import br.com.easycompras.api_easycompras.model.dto.DadosCadastroEndereco;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,7 +56,7 @@ public class Endereco {
 		}
 	}
 	
-	public void atualizarEmUsuario(DadosAtualizacaoEnderecoUsuario dados) {
+	public void atualizarSemPK(DadosAtualizacaoEnderecoSemPK dados) {
 		if (dados.numero() != null) {
 			this.numero = dados.numero();
 		}

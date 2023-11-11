@@ -1,5 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoProduto;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroProduto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -23,7 +25,23 @@ public class Produto
 	public Produto() {
 		super();
 	}
-
+	
+	public Produto(DadosCadastroProduto dados) {
+		this.sku = dados.sku();
+		this.nomeProduto = dados.nomeProduto();
+		this.descricao = dados.descricao();
+	}
+	
+	public void atualizar(DadosAtualizacaoProduto dados) {
+		if (dados.nomeProduto() != null) {
+			this.nomeProduto = dados.nomeProduto();
+		}
+		
+		if (dados.descricao() != null) {
+			this.descricao = dados.descricao();
+		}
+	}
+	
 	// GETTERS AND SETTERS
 	public String getSku() {
 		return sku;

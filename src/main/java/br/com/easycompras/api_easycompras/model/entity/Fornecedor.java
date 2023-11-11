@@ -1,5 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoFornecedor;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroFornecedor;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +53,41 @@ public class Fornecedor {
 	// CONSTRUTOR
 	public Fornecedor() {
 		super();
+	}
+	
+	public Fornecedor(DadosCadastroFornecedor dados) {
+		this.razaoSocial = dados.razaoSocial();
+		this.cnpj = dados.cnpj();
+		this.nomeContato = dados.nomeContato();
+		this.telefone = dados.telefone();
+		this.email = dados.email();
+		this.endereco = new Endereco(dados.endereco());
+	}
+	
+	public void atualizar(DadosAtualizacaoFornecedor dados) {
+		if (dados.razaoSocial() != null ) {
+			this.razaoSocial = dados.razaoSocial();
+		}
+		
+		if (dados.cnpj() != null ) {
+			this.cnpj = dados.cnpj();
+		}
+		
+		if (dados.nomeContato() != null ) {
+			this.nomeContato = dados.nomeContato();
+		}
+		
+		if (dados.telefone() != null ) {
+			this.telefone = dados.telefone();
+		}
+		
+		if (dados.email() != null) {
+			this.email = dados.email();
+		}
+		
+		if (dados.endereco() != null) {
+			this.endereco.atualizarSemPK(dados.endereco());
+		}
 	}
 
 	// GETTERS AND SETTERS

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record DadosCadastroEndereco(
-		@NotBlank(message = "Número não pode ser vazio")
+		@NotBlank
 		String numero,
 		
 		@Size(max = 100)

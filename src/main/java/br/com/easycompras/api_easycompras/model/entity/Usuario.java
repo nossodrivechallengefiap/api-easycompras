@@ -71,7 +71,7 @@ public class Usuario
 		}
 		
 		if (dados.endereco() != null) {
-			this.endereco.atualizarEmUsuario(dados.endereco());
+			this.endereco.atualizarSemPK(dados.endereco());
 		}
 	}
 
