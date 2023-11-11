@@ -14,16 +14,17 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
-@Entity(name = "Usuarios")
-@Table(name = "USUARIOS", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "EMAIL", name = "UK_USUARIOS_EMAIL")
+@Entity
+@Table(name = "EC_USUARIOS", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "EMAIL", name = "UK_EC_USUARIOS_EMAIL")
 })
-public class Usuarios {
+public class Usuario 
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "SQ_USUARIOS", sequenceName = "SQ_USUARIOS", allocationSize = 1)
+	@SequenceGenerator(name = "SQ_EC_USUARIOS", sequenceName = "SQ_EC_USUARIOS", allocationSize = 1)
 	@Column(name = "CODIGO_USUARIO")
-	private Long codigo_usuario;
+	private Long codigoUsuario;
 	
 	@Column(name = "NOME", nullable = false)
 	private String nome;
@@ -36,24 +37,24 @@ public class Usuarios {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(
-				name = "codigo_endereco",
-				referencedColumnName = "codigo_endereco",
-				foreignKey = @ForeignKey(name = "FK_USUARIOS_ENDERECO")
+				name = "CODIGO_ENDERECO",
+				referencedColumnName = "CODIGO_ENDERECO",
+				foreignKey = @ForeignKey(name = "FK_USUARIOS_ENDERECOS")
 			)
-	private Enderecos endereco;
+	private Endereco endereco;
 	
 	//CONSTRUTORES
-	public Usuarios() {
+	public Usuario() {
 		super();
 	}
 
 	//GETTERS AND SETTERS
-	public Long getCodigo_usuario() {
-		return codigo_usuario;
+	public Long getCodigoUsuario() {
+		return codigoUsuario;
 	}
 
-	public void setCodigo_usuario(Long codigo_usuario) {
-		this.codigo_usuario = codigo_usuario;
+	public void setCodigoUsuario(Long codigoUsuario) {
+		this.codigoUsuario = codigoUsuario;
 	}
 
 	public String getNome() {
@@ -80,11 +81,24 @@ public class Usuarios {
 		this.email = email;
 	}
 
-	public Enderecos getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Enderecos endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	// TO STRING
+	@Override
+	public String toString() 
+	{
+		return "Usuario ["
+				+ "codigoUsuario=" + codigoUsuario 
+				+ ", nome=" + nome 
+				+ ", senha=" + senha 
+				+ ", email=" + email
+				+ ", endereco=" + endereco 
+				+ "]";
 	}
 }

@@ -1,5 +1,5 @@
 package br.com.easycompras.api_easycompras.model.dto;
 
-public class DadosListagemUsuarios {
+public class DadosCadastroProduto {
 
 }

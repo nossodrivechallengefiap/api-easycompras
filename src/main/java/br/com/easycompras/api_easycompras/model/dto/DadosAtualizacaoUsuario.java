@@ -1,5 +1,5 @@
 package br.com.easycompras.api_easycompras.model.dto;
 
-public class DadosCadastroUsuarios {
+public class DadosAtualizacaoUsuario {
 
 }
