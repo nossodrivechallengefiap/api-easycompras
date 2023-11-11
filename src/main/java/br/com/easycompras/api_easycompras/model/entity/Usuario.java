@@ -1,5 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoUsuario;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroUsuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +48,31 @@ public class Usuario
 	//CONSTRUTORES
 	public Usuario() {
 		super();
+	}
+	
+	public Usuario(DadosCadastroUsuario dados) {
+		this.nome = dados.nome();
+		this.senha = dados.senha();
+		this.email = dados.email();
+		this.endereco = new Endereco(dados.endereco());
+	}
+	
+	public void atualizar(DadosAtualizacaoUsuario dados) {
+		if (dados.nome() != null) {
+			this.nome = dados.nome();
+		}
+		
+		if (dados.senha() != null) {
+			this.senha = dados.senha();
+		}
+		
+		if (dados.email() != null) {
+			this.email = dados.email();
+		}
+		
+		if (dados.endereco() != null) {
+			this.endereco.atualizarEmUsuario(dados.endereco());
+		}
 	}
 
 	//GETTERS AND SETTERS
