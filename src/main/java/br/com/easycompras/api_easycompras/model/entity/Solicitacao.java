@@ -2,6 +2,9 @@ package br.com.easycompras.api_easycompras.model.entity;
 
 import java.time.LocalDateTime;
 
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoSolicitacao;
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoSolicitacaoSemPK;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroSolicitacao;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,6 +53,49 @@ public class Solicitacao
 	// CONSTRUTORES
 	public Solicitacao() {
 		super();
+	}
+	
+	public Solicitacao(DadosCadastroSolicitacao dados) {
+		this.produto = new Produto(dados.produto());
+		this.quantidade = dados.quantidade();
+		this.usuario = new Usuario(dados.usuario());
+		this.dataSolicitacao = dados.dataSolicitacao();
+	}
+	
+	public void atualizar(DadosAtualizacaoSolicitacao dados) {
+		if (dados.produto() != null) {
+			this.produto.atualizar(dados.produto());
+		}
+		
+		if (dados.quantidade() != null) {
+			this.quantidade = dados.quantidade();
+		}
+		
+		if (dados.usuario() != null) {
+			this.usuario.atualizarSemPK(dados.usuario());
+		}
+		
+		if (dados.dataSolicitacao() != null) {
+			this.dataSolicitacao = dados.dataSolicitacao();
+		}
+	}
+	
+	public void atualizarSemPK(DadosAtualizacaoSolicitacaoSemPK dados) {
+		if (dados.produto() != null) {
+			this.produto.atualizar(dados.produto());
+		}
+		
+		if (dados.quantidade() != null) {
+			this.quantidade = dados.quantidade();
+		}
+		
+		if (dados.usuario() != null) {
+			this.usuario.atualizarSemPK(dados.usuario());
+		}
+		
+		if (dados.dataSolicitacao() != null) {
+			this.dataSolicitacao = dados.dataSolicitacao();
+		}
 	}
 
 	//GETTERS AND SETTERS

@@ -1,6 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
 import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoUsuario;
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoUsuarioSemPK;
 import br.com.easycompras.api_easycompras.model.dto.DadosCadastroUsuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -58,6 +59,24 @@ public class Usuario
 	}
 	
 	public void atualizar(DadosAtualizacaoUsuario dados) {
+		if (dados.nome() != null) {
+			this.nome = dados.nome();
+		}
+		
+		if (dados.senha() != null) {
+			this.senha = dados.senha();
+		}
+		
+		if (dados.email() != null) {
+			this.email = dados.email();
+		}
+		
+		if (dados.endereco() != null) {
+			this.endereco.atualizarSemPK(dados.endereco());
+		}
+	}
+	
+	public void atualizarSemPK(DadosAtualizacaoUsuarioSemPK dados) {
 		if (dados.nome() != null) {
 			this.nome = dados.nome();
 		}

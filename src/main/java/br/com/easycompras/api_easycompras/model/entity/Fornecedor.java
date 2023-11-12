@@ -1,6 +1,7 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
 import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoFornecedor;
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoFornecedorSemPK;
 import br.com.easycompras.api_easycompras.model.dto.DadosCadastroFornecedor;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -65,6 +66,32 @@ public class Fornecedor {
 	}
 	
 	public void atualizar(DadosAtualizacaoFornecedor dados) {
+		if (dados.razaoSocial() != null ) {
+			this.razaoSocial = dados.razaoSocial();
+		}
+		
+		if (dados.cnpj() != null ) {
+			this.cnpj = dados.cnpj();
+		}
+		
+		if (dados.nomeContato() != null ) {
+			this.nomeContato = dados.nomeContato();
+		}
+		
+		if (dados.telefone() != null ) {
+			this.telefone = dados.telefone();
+		}
+		
+		if (dados.email() != null) {
+			this.email = dados.email();
+		}
+		
+		if (dados.endereco() != null) {
+			this.endereco.atualizarSemPK(dados.endereco());
+		}
+	}
+	
+	public void atualizarSemPK(DadosAtualizacaoFornecedorSemPK dados) {
 		if (dados.razaoSocial() != null ) {
 			this.razaoSocial = dados.razaoSocial();
 		}

@@ -3,6 +3,8 @@ package br.com.easycompras.api_easycompras.model.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoCotacao;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroCotacao;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,6 +61,41 @@ public class Cotacao
 		super();
 	}
 
+	public Cotacao(DadosCadastroCotacao dados) {
+		this.solicitacao = new Solicitacao(dados.solicitacao());
+		this.fornecedor = new Fornecedor(dados.fornecedor());
+		this.valorUnitario = dados.valorUnitario();
+		this.dataEntregaPrevista = dados.dataEntregaPrevista();
+		this.dataCotacao = dados.dataCotacao();
+		this.cotacaoAprovada = dados.cotacaoAprovada();
+	}
+	
+	public void atualizar(DadosAtualizacaoCotacao dados) {
+		if (dados.solicitacao() != null) {
+			this.solicitacao.atualizarSemPK(dados.solicitacao());
+		}
+		
+		if (dados.fornecedor() != null) {
+			this.fornecedor.atualizarSemPK(dados.fornecedor());
+		}
+		
+		if (dados.valorUnitario() != null) {
+			this.valorUnitario = dados.valorUnitario();
+		}
+		
+		if (dados.dataEntregaPrevista() != null) {
+			this.dataEntregaPrevista = dados.dataEntregaPrevista();
+		}
+		
+		if (dados.dataCotacao() != null) {
+			this.dataCotacao = dados.dataCotacao();
+		}
+		
+		if (dados.cotacaoAprovada() != null) {
+			this.cotacaoAprovada = dados.cotacaoAprovada();
+		}
+	}
+	
 	// GETTERS AND SETTERS
 	public Long getCodigoCotacao() {
 		return codigoCotacao;
