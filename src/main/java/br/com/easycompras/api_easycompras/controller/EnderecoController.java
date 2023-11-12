@@ -40,6 +40,17 @@ public class EnderecoController
 		return repository.findAll(paginacao).map(DadosListagemEndereco :: new);
 	}
 	
+	@GetMapping("/{id}")
+	public DadosListagemEndereco obterPorId(@PathVariable Long id) {
+	    Endereco endereco = repository.findById(id).orElse(null);
+
+	    if (endereco != null) {
+	        return new DadosListagemEndereco(endereco);
+	    } else {
+	        return null;
+	    }
+	}
+	
 	@PutMapping
 	@Transactional
 	public void atualizar(@RequestBody @Valid DadosAtualizacaoEndereco dados) {

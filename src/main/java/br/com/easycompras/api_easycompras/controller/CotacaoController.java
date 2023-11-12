@@ -23,7 +23,8 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/cotacao")
-public class CotacaoController {
+public class CotacaoController 
+{
 	@Autowired
 	private CotacaoRepository repository;
 
@@ -37,6 +38,17 @@ public class CotacaoController {
 	public Page<DadosListagemCotacao> listar(
 			@PageableDefault(size = 3, sort = {"solicitacao.produto.nomeProduto"}) Pageable paginacao){
 		return repository.findAll(paginacao).map(DadosListagemCotacao :: new);
+	}
+	
+	@GetMapping("/{id}")
+	public DadosListagemCotacao obterPorId(@PathVariable Long id) {
+	    Cotacao cotacao = repository.findById(id).orElse(null);
+
+	    if (cotacao != null) {
+	        return new DadosListagemCotacao(cotacao);
+	    } else {
+	        return null;
+	    }
 	}
 	
 	@PutMapping

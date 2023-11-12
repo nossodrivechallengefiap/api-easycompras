@@ -40,6 +40,17 @@ public class ProdutoController
 		return repository.findAll(paginacao).map(DadosListagemProduto :: new);
 	}
 	
+	@GetMapping("/{id}")
+	public DadosListagemProduto obterPorId(@PathVariable String id) {
+	    Produto produto = repository.findById(id).orElse(null);
+
+	    if (produto != null) {
+	        return new DadosListagemProduto(produto);
+	    } else {
+	        return null;
+	    }
+	}
+	
 	@PutMapping
 	@Transactional
 	public void atualizar(@RequestBody @Valid DadosAtualizacaoProduto dados) {

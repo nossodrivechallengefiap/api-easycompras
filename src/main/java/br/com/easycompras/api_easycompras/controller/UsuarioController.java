@@ -40,6 +40,17 @@ public class UsuarioController
 		return repository.findAll(paginacao).map(DadosListagemUsuario :: new);
 	}
 	
+	@GetMapping("/{id}")
+	public DadosListagemUsuario obterPorId(@PathVariable Long id) {
+	    Usuario usuario = repository.findById(id).orElse(null);
+
+	    if (usuario != null) {
+	        return new DadosListagemUsuario(usuario);
+	    } else {
+	        return null;
+	    }
+	}
+	
 	@PutMapping
 	@Transactional
 	public void atualizar(@RequestBody @Valid DadosAtualizacaoUsuario dados) {

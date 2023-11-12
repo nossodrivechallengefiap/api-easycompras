@@ -23,7 +23,8 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/solicitacao")
-public class SolicitacaoController {
+public class SolicitacaoController 
+{
 	@Autowired
 	private SolicitacaoRepository repository;
 	
@@ -37,6 +38,17 @@ public class SolicitacaoController {
 	public Page<DadosListagemSolicitacao> listar(
 			@PageableDefault(size = 3, sort = {"produto.nomeProduto"}) Pageable paginacao){
 		return repository.findAll(paginacao).map(DadosListagemSolicitacao :: new);
+	}
+	
+	@GetMapping("/{id}")
+	public DadosListagemSolicitacao obterPorId(@PathVariable Long id) {
+	    Solicitacao solicitacao = repository.findById(id).orElse(null);
+
+	    if (solicitacao != null) {
+	        return new DadosListagemSolicitacao(solicitacao);
+	    } else {
+	        return null;
+	    }
 	}
 
 	@PutMapping

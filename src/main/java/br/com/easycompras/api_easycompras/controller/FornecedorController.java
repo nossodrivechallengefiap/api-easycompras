@@ -40,6 +40,17 @@ public class FornecedorController
 		return repository.findAll(paginacao).map(DadosListagemFornecedor :: new);
 	}
 	
+	@GetMapping("/{id}")
+	public DadosListagemFornecedor obterPorId(@PathVariable Long id) {
+	    Fornecedor fornecedor = repository.findById(id).orElse(null);
+
+	    if (fornecedor != null) {
+	        return new DadosListagemFornecedor(fornecedor);
+	    } else {
+	        return null;
+	    }
+	}
+	
 	@PutMapping
 	@Transactional
 	public void atualizar(@RequestBody @Valid DadosAtualizacaoFornecedor dados) {
