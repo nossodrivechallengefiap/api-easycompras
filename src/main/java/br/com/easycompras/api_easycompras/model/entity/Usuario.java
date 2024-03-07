@@ -1,8 +1,10 @@
 package br.com.easycompras.api_easycompras.model.entity;
 
+import br.com.easycompras.api_easycompras.model.EnderecoRepository;
 import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoUsuario;
 import br.com.easycompras.api_easycompras.model.dto.DadosAtualizacaoUsuarioSemPK;
 import br.com.easycompras.api_easycompras.model.dto.DadosCadastroUsuario;
+import br.com.easycompras.api_easycompras.model.dto.DadosCadastroUsuarioComFK;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,13 +53,19 @@ public class Usuario
 		super();
 	}
 	
+	public Usuario(DadosCadastroUsuarioComFK dados) {
+		this.nome = dados.nome();
+		this.senha = dados.senha();
+		this.email = dados.email();
+	}
+
 	public Usuario(DadosCadastroUsuario dados) {
 		this.nome = dados.nome();
 		this.senha = dados.senha();
 		this.email = dados.email();
 		this.endereco = new Endereco(dados.endereco());
 	}
-	
+
 	public void atualizar(DadosAtualizacaoUsuario dados) {
 		if (dados.nome() != null) {
 			this.nome = dados.nome();
