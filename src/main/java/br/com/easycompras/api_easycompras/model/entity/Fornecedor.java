@@ -23,7 +23,7 @@ import jakarta.persistence.UniqueConstraint;
 })
 public class Fornecedor {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EC_FORNECEDORES")
 	@SequenceGenerator(name = "SQ_EC_FORNECEDORES", sequenceName = "SQ_EC_FORNECEDORES", allocationSize = 1)
 	@Column(name = "CODIGO_FORNECEDOR")
 	private Long codigoFornecedor;

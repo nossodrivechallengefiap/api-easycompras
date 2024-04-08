@@ -55,10 +55,10 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public Page<DadosListagemUsuario> listar(
-            @PageableDefault(size = 3, sort = {"nome"}) Pageable paginacao) {
+    public Page<DadosListagemUsuario> listar(Pageable paginacao) {
         return usuarioRepository.findAll(paginacao).map(DadosListagemUsuario::new);
     }
+
 
     @GetMapping("/{id}")
     public DadosListagemUsuario obterPorId(@PathVariable Long id) {

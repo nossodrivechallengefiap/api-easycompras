@@ -35,11 +35,11 @@ public class FornecedorController
 	}
 
 	@GetMapping
-	public Page<DadosListagemFornecedor> listar(
-			@PageableDefault(size = 3, sort = {"razaoSocial"}) Pageable paginacao){
-		return repository.findAll(paginacao).map(DadosListagemFornecedor :: new);
+	public Page<DadosListagemFornecedor> listar(Pageable paginacao) {
+		return repository.findAll(paginacao).map(DadosListagemFornecedor::new);
 	}
-	
+
+
 	@GetMapping("/{id}")
 	public DadosListagemFornecedor obterPorId(@PathVariable Long id) {
 	    Fornecedor fornecedor = repository.findById(id).orElse(null);

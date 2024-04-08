@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "EC_ENDERECOS")
 public class Endereco {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EC_ENDERECO")
 	@SequenceGenerator(name = "SQ_EC_ENDERECOS", sequenceName = "SQ_EC_ENDERECOS", allocationSize = 1)
 	@Column(name = "CODIGO_ENDERECO")
 	private Long codigoEndereco;

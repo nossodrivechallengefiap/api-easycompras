@@ -33,11 +33,10 @@ public class EnderecoController
 	public void cadastrar(@RequestBody @Valid DadosCadastroEndereco dados) {
 		repository.save(new Endereco(dados));	
 	}
-	
+
 	@GetMapping
-	public Page<DadosListagemEndereco> listar(
-			@PageableDefault(size = 3, sort = {"numero"}) Pageable paginacao){
-		return repository.findAll(paginacao).map(DadosListagemEndereco :: new);
+	public Page<DadosListagemEndereco> listar(Pageable paginacao){
+		return repository.findAll(paginacao).map(DadosListagemEndereco::new);
 	}
 	
 	@GetMapping("/{id}")

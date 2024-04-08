@@ -35,9 +35,8 @@ public class ProdutoController
 	}
 
 	@GetMapping
-	public Page<DadosListagemProduto> listar(
-			@PageableDefault(size = 3, sort = {"nomeProduto"}) Pageable paginacao){
-		return repository.findAll(paginacao).map(DadosListagemProduto :: new);
+	public Page<DadosListagemProduto> listar(Pageable paginacao) {
+		return repository.findAll(paginacao).map(DadosListagemProduto::new);
 	}
 	
 	@GetMapping("/{id}")

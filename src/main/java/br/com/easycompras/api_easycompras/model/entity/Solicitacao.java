@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 public class Solicitacao 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EC_SOLICITACOES")
 	@SequenceGenerator(name = "SQ_EC_SOLICITACOES", sequenceName = "SQ_EC_SOLICITACOES", allocationSize = 1)
 	@Column(name = "CODIGO_SOLICITACAO")
 	private Long codigoSolicitacao;

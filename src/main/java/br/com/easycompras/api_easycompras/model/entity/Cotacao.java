@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 public class Cotacao 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EC_COTACOES")
 	@SequenceGenerator(name = "SQ_EC_COTACOES", sequenceName = "SQ_EC_COTACOES", allocationSize = 1)
 	@Column(name = "CODIGO_COTACAO")
 	private Long codigoCotacao;

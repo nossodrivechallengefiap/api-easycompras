@@ -35,11 +35,10 @@ public class SolicitacaoController
 	}
 
 	@GetMapping
-	public Page<DadosListagemSolicitacao> listar(
-			@PageableDefault(size = 3, sort = {"produto.nomeProduto"}) Pageable paginacao){
-		return repository.findAll(paginacao).map(DadosListagemSolicitacao :: new);
+	public Page<DadosListagemSolicitacao> listar(Pageable paginacao) {
+		return repository.findAll(paginacao).map(DadosListagemSolicitacao::new);
 	}
-	
+
 	@GetMapping("/{id}")
 	public DadosListagemSolicitacao obterPorId(@PathVariable Long id) {
 	    Solicitacao solicitacao = repository.findById(id).orElse(null);
